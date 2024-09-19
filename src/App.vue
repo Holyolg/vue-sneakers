@@ -7,28 +7,7 @@ import BaseHeader from './components/BaseHeader.vue'
 
 const cart = ref([])
 
-const isLoading = ref(false)
-
 const drawerOpen = ref(false)
-
-const cartIsEmpty = computed(() => cart.value.length === 0)
-const cartButtonDisabled = computed(() => isLoading.value || cartIsEmpty.value)
-const createOrder = async () => {
-  try {
-    isLoading.value = true
-    const { data } = await axios.post('https://34d6cad7100e9bbb.mokky.dev/orders', {
-      items: cart.value,
-      totalPrice: totalPrice.value
-    })
-    cart.value = []
-
-    return data
-  } catch (error) {
-    console.log(error)
-  } finally {
-    isLoading.value = false
-  }
-}
 
 const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0))
 
@@ -70,10 +49,5 @@ provide('cart', { cart, closeDrawer, openDrawer, addToCart, removeFromCart })
       <router-view />
     </div>
   </main>
-  <DrawerCart
-    :total-price="totalPrice"
-    :button-disabled="cartButtonDisabled"
-    v-if="drawerOpen"
-    @create-order="createOrder"
-  />
+  <DrawerCart :total-price="totalPrice" v-if="drawerOpen" />
 </template>

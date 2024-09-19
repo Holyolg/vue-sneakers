@@ -35,12 +35,12 @@ defineProps({
       </div>
       <button>
         <CirclePlus
-          v-if="onClickAdd"
+          v-if="onClickAdd && !isAdded"
           @click="onClickAdd"
           class="opacity-50 hover:opacity-100 fill-[#40b681] text-white"
         />
         <Check
-          v-if="onClickAdd"
+          v-if="onClickAdd && isAdded"
           @click="onClickAdd"
           class="opacity-50 hover:opacity-100 text-[#40b681]"
         />

@@ -2,7 +2,7 @@
 import CardList from '../components/CardList.vue'
 import { inject, onMounted, ref, watch, reactive, provide, computed } from 'vue'
 import { Search } from 'lucide-vue-next'
-
+import debounce from 'lodash.debounce'
 import axios from 'axios'
 
 const { cart, addToCart, removeFromCart } = inject('cart')
@@ -17,9 +17,9 @@ const onChangeSelect = (e) => {
   filters.sortBy = e.target.value
 }
 
-const onChangeSearch = (e) => {
+const onChangeSearch = debounce((e) => {
   filters.searchQuery = e.target.value
-}
+}, 500)
 
 const onClickAddPlus = (item) => {
   if (!item.isAdded) {
