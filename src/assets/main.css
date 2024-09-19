@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body {
-  background-color: #f5fff1;
+  background: rgb(117, 206, 149);
+  background: -moz-radial-gradient(circle, rgba(117, 206, 149, 1) 0%, rgba(38, 52, 70, 1) 100%);
+  background: -webkit-radial-gradient(circle, rgba(117, 206, 149, 1) 0%, rgba(38, 52, 70, 1) 100%);
+  background: radial-gradient(circle, rgba(117, 206, 149, 1) 0%, rgba(38, 52, 70, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#75ce95",endColorstr="#263446",GradientType=1);
 }
